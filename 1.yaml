@@ -1,0 +1,12 @@
+--- # my first playbook
+ - hosts: local
+   become: yes
+   tasks:
+   - name: install Apache on nodes
+     yum:
+       name: httpd
+       state: latest 
+   - name: Restarting the Apache service
+     service: 
+       name: httpd
+       state: restarted
