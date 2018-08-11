@@ -1,0 +1,31 @@
+--- # my first playbook
+ - hosts: boa
+   become: yes
+   tasks:
+   - name: install httpd on nodes
+     yum:
+       name: httpd
+       state: latest
+   - name: Restarting the httpd service
+     service:
+       name: httpd
+       state: restarted
+   - name: create index.html
+     file:
+       state: touch
+       dest: /var/www/index.html
+   - name: copy contends to index.html
+     copy: 
+       content: "welcome to ansible playbook"
+       dest: /var/www/index.html
+   - name: enable firewall for httpd
+     firewalld:
+        port: 8080/tcp
+        state: enabled
+   - name: 
+     service:
+        name: firewalld
+        state: restarted
+     
+
+
